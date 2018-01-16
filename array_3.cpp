@@ -1,12 +1,18 @@
 #include <iostream>
 #include<cstring>
 using namespace std;
-void rev(char ch[],int l)
+void swap(char &s1,char &s2)
 {
-  string s1="";
-  for(int i=l-1;i>=0;i--)
-  s1+=ch[i];
-  cout<<s1<<endl;
+  char temp=s1;
+  s1=s2;
+  s2=temp;
+}
+void rev(string &s,int l,int h)
+{
+  if(l>=h)
+  return;
+  swap(s[l],s[h]);
+  rev(s,l+1,h-1);
 }
 int main() {
 	//code
@@ -17,9 +23,8 @@ int main() {
     string s;
     cin>>s;
     int l=s.length();
-    char ch[l+1];
-    strcpy(ch,s.c_str());
-    rev(ch,l);
+    rev(s,0,l-1);
+    cout<<s<<endl;
   }
 	return 0;
 }
