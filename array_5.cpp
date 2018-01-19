@@ -53,7 +53,7 @@ minmax minmaxfind(int arr[],int n)
     }
     i+=2;
   }
-  return m;
+  return m;                                                                                                              
 }
 int main()
 {
