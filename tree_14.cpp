@@ -42,28 +42,18 @@ Btree<int>* takeInputLevelWise()
   }
   return root;
 }
-int width(Btree<int>* root)
+int levelOfaNode(Btree<int>* root,int key,int level)
 {
-  queue<Btree<int>* > q;
+
   if(root==NULL)
   return 0;
-  q.push(root);
-  int result=0;
-  while(!q.empty())
-  {
-    int count=q.size();
-    result=max(count,result);
-    while(count--)
-    {
-      Btree<int>* front=q.front();
-      q.pop();
-      if(front->left!=NULL)
-      q.push(front->left);
-      if(front->right!=NULL)
-      q.push(front->right);
-    }
-  }
-  return result;
+  if(root->data==key)
+  return level;
+  int downlevel=levelOfaNode(root->left,key,level+1);
+  if(downlevel!=0)
+  return downlevel;
+  downlevel=levelOfaNode(root->right,key,level+1);
+  return downlevel;
 }
 void printInorder(Btree<int>* root)
 {
@@ -79,6 +69,9 @@ int main()
   Btree<int> *root=takeInputLevelWise();
   // vector<Btree<int>* > v;
   // printRootToLeaf(root,v);
-  int maxwidth=width(root);
-  cout<<"the maximum width is "<<maxwidth<<endl;
+  int key;
+  cout<<"enter the key to be found"<<endl;
+  cin>>key;
+  int level=levelOfaNode(root,key,1);
+  cout<<"level of a key is "<<level<<endl;
 }
