@@ -46,6 +46,26 @@ Node* buildList()
   }
   return head;
 }
+Node* deleteANode(Node* head,int x)
+{
+  Node* temp=head;
+    if(x==1)
+    {
+        head=temp->next;
+        delete temp;
+    }
+    else
+    {
+    for(int i=1;i<x-1;i++)
+    {
+        temp=temp->next;
+    }
+    Node* temp1=temp->next;
+    temp->next=temp1->next;
+    delete temp1;
+    }
+    return head;
+}
 void print(Node* head)
 {
   Node* temp=head;
